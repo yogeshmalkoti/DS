@@ -250,6 +250,7 @@ rmses <- sapply(lambdas,function(l){
     edx %>% 
     left_join(b_i, by = "movieId") %>%
     left_join(b_u, by = "userId") %>%
+    mutate(pred = mu + b_i + b_u) %>%
     .$pred
   
   return(RMSE(predicted_ratings, edx$rating))
